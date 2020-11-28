@@ -14,7 +14,7 @@ bool SpecialSymbol::checkValid(QString * txt, qint32 from){
 		qint32 to = txt->indexOf("#",from+2);
 		if (to == -1) return valid;
 		cut = txt->mid(from,to-from+1);
-		QVector<QString> vec = {
+		QVector<QString> vec = { //мне показалось что сделать вектор - наиболее удобный способ, если надо добавить новые элементы за парсинга. можно подгружать список из внешнего источника и т.д. Главное соблюдать формат
 			"#@C#","©",
 			"#@RUB#","₽",
 			"#@EUR#","€",

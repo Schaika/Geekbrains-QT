@@ -16,7 +16,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_plainTextEdit_textChanged()
 {
-	SpecialSymbol parseSymbols;
+	SpecialSymbol parseSymbols; //не уверен это верное решение каждый раз создавать этот элемент здесь
 	if (parseSymbols.changes(ui->plainTextEdit->toPlainText())){
 		ui->plainTextEdit->setPlainText(parseSymbols.getText());
 	};
