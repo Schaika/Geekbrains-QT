@@ -29,7 +29,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_colorize_released()
 {
-		QModelIndexList indexList = ui->tableWidget->selectionModel()->selectedIndexes();
+		QModelIndexList indexList = ui->tableWidget->selectionModel()->selectedIndexes(); //Я не создавал модель, но tableWidget - наследник TableView и имеет доступ к методу selectionModel
 		for (int i=0;i<indexList.count() ; i++) {
 		QModelIndex index = indexList[i];
 			int row = index.row();

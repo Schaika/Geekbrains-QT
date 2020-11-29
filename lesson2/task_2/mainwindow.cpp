@@ -2,15 +2,20 @@
 #include "ui_mainwindow.h"
 #include <QStandardItemModel>
 #include <QFile>
-
+//я создал 2 функции, чтобы не копировать один и тот же код на кнопки
+// initModel собирает модель из глобального листа строк
+// updateModel создает указатель на новую модель, инициализует ее и удаляет старую модель
+// я лишь когда сделал задание, смог найти способ как сделать его <italic> более правильно </italic>
+// наверное по заданию нужно было делать с помощью removeRow() и insertRow() из класса QAbstractItemModel и работать с одной моделью
+// но такая реализация тоже работает
+// если это совсем неправильно, я переделаю
 QStringList list {"C++", "Python", "Java", "C#", "PHP", "JavaScript"};
-
 void initModel(QAbstractItemModel *model){
 		for (int i=0; i<model->rowCount(); i++) {
 			QModelIndex index = model->index(i,0);
 			QString str = list[i];
 			model->setData(index,str,Qt::DisplayRole);
-			QString fileName = QCoreApplication::applicationDirPath()+"/ico/"+str+".png";
+			QString fileName = QCoreApplication::applicationDirPath()+"/ico/"+str+".png"; //собираем имя файла с абсолютным путем
 			if (QFile::exists(fileName)){
 					model->setData(index,QIcon(fileName),Qt::DecorationRole);
 				}else{
