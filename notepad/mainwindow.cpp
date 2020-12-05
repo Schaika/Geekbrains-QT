@@ -4,7 +4,9 @@
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QMessageBox>
-// не разобрался как сделать, чтобы некоторые функции работали в режиме реального времени, например флаг read-only может меняться пока файл открыт в программе, но программа об этом не узнает, если не нажать на кнопку или что-то подобное. Как сделать эту проверку автоматически?
+// не разобрался как сделать, чтобы некоторые функции работали в режиме реального времени
+// например флаг read-only может меняться пока файл открыт в программе, но программа об этом не узнает, если не нажать на кнопку или что-то подобное.
+//Как сделать эту проверку автоматически?
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
@@ -19,6 +21,7 @@ MainWindow::~MainWindow()
 		delete ui;
 	}
 int MainWindow::askUser(){
+	//диалоговое окно, где пользователя спрашивают не хочет ли он сохранить изменения
 		QMessageBox msgBox;
 			msgBox.setWindowTitle(tr("Файл был изменен."));
 			msgBox.setText(tr("Файл был изменен."));
@@ -40,7 +43,8 @@ void MainWindow::openDialog(){
 				QFileInfo info(file);
 							filestatus.setRO(!info.isWritable());
 							if (filestatus.isReadOnly()){
-								this->setWindowTitle(defaultTitle + " (" + filename + ")" + QString(tr("  --  только для чтения"))); //если файл только для чтения - в заголовке программмы рядом с путем будет соответсвубщая надпись
+								this->setWindowTitle(defaultTitle + " (" + filename + ")" + QString(tr("  --  только для чтения")));
+								//если файл только для чтения - в заголовке программмы рядом с путем будет соответсвубщая надпись
 							}else{
 								this->setWindowTitle(defaultTitle + " (" + filename + ")");
 							}
@@ -64,7 +68,8 @@ bool MainWindow::saveAsDialog(){
 	}
 // saveFile() проверяет можно ли писать в файл и есть ли путь к нему (в случае если файл новый)
 bool MainWindow::saveFile(){
-		if(filestatus.getPath().length()==0|| filestatus.isReadOnly() == true) if(!saveAsDialog()) return false; //возможно filestatus.isReadOnly() следовало бы проверять каждый раз при обращении к этому методу возможность писать в файл
+		if(filestatus.getPath().length()==0|| filestatus.isReadOnly() == true) if(!saveAsDialog()) return false;
+		//возможно каждый раз при обращении к методу filestatus.isReadOnly() следовало бы проверять возможность писать в файл
 		QFile file(filestatus.getPath());
 			if(file.open(QIODevice::WriteOnly)){
 				QString data = ui->plainTextEdit->toPlainText();
@@ -85,7 +90,8 @@ void MainWindow::newFile(){
 	}
 void MainWindow::on_action_NewFile_triggered()
 {
-	if(filestatus.hasChanges()){ //проверка перед созданием нового файла, если текущий файл имеет изменения, то предлагаем сохранить их
+	if(filestatus.hasChanges()){
+		//проверка перед созданием нового файла, если текущий файл имеет изменения, то предлагаем сохранить их
 
 		switch (askUser()) {
 		case QMessageBox::Save:
