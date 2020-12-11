@@ -3,6 +3,10 @@
         <file>res/text-editor-logo.svg</file>
     </qresource>
     <qresource prefix="/src/txt">
-        <file>res/readme.txt</file>
+        <file>res/readme_ru.txt</file>
+        <file>res/readme_en.txt</file>
+    </qresource>
+    <qresource prefix="/src/lang">
+        <file>res/QtLanguage_en.qm</file>
     </qresource>
 </RCC>

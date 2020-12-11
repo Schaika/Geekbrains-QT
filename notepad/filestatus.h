@@ -6,7 +6,8 @@
 class filestatus
 {
 	bool changed_flag;
-	bool RO_flag;		//флаг, что текущий файл в системе доступен только для чтения
+	bool is_read_only;		//флаг, что текущий файл в системе доступен только для чтения
+	bool force_read_only;   //для режима открыть только для чтения
 	QString full_path;	//полный путь к файлу
 	QString ext;		//расширение текущего файла, заготовка на будущее
 public:
@@ -14,7 +15,9 @@ public:
 	void reset();
 	bool hasChanges();
 	bool isReadOnly();
+	bool isForceReadOnly();
 	bool hasPath();
+	void open_readonly(bool);
 	void setChanged(bool);
 	void setRO(bool);
 	QString getExt();

@@ -3,13 +3,15 @@
 filestatus::filestatus()
 	{
 		changed_flag = false;
-		RO_flag = false;
+		is_read_only = false;
+		force_read_only = false;
 		full_path = "";
 		ext = "";
 	}
 void filestatus::reset(){
 		changed_flag = false;
-		RO_flag = false;
+		is_read_only = false;
+		force_read_only = false;
 		full_path = "";
 		ext = "";
 	}
@@ -17,13 +19,23 @@ bool filestatus::hasChanges(){
 		return changed_flag;
 	}
 bool filestatus::isReadOnly(){
-		return RO_flag;
+		return is_read_only;
+	}
+
+bool filestatus::isForceReadOnly()
+	{
+		return force_read_only;
 	}
 bool filestatus::hasPath(){
 		if (full_path.length()>0)return true; else return false;
 	}
+
+void filestatus::open_readonly(bool a)
+	{
+		force_read_only = a;
+	}
 void filestatus::setRO(bool a){
-		RO_flag = a;
+		is_read_only = a;
 	}
 void filestatus::setChanged(bool a){
 		changed_flag = a;
