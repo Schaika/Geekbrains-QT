@@ -163,7 +163,7 @@ void MainWindow::on_action_SaveAs_triggered()
 
 void MainWindow::on_action_quit_triggered()
 {
-	exit(0); // пока не нашел функцию, которая позволяет перехватить (и даже отменить) закрытие программы, если нажат крестик или Alt+F4. Потому не стал добавлять проверку и предлагать сохранить файл на этой кнопке, иначе было бы странно.
+	  qApp->exit(0); // пока не нашел функцию, которая позволяет перехватить (и даже отменить) закрытие программы, если нажат крестик или Alt+F4. Потому не стал добавлять проверку и предлагать сохранить файл на этой кнопке, иначе было бы странно.
 }
 void MainWindow::on_action_Help_triggered()
 {
@@ -275,3 +275,31 @@ void MainWindow::receiveShortcutsList(QStringList newList)
 		ui->action_quit->setShortcut(newList.at(6));
 		initShortcutList();
 	}
+
+void MainWindow::on_action_LightTheme_triggered()
+{
+		ui->action_LightTheme->QAction::setEnabled(false);
+		ui->action_LightTheme->setChecked(true);
+		ui->action_DarkTheme->QAction::setEnabled(true);
+		ui->action_DarkTheme->setChecked(false);
+		qApp->setStyleSheet("");
+}
+
+void MainWindow::on_action_DarkTheme_triggered()
+{
+		ui->action_LightTheme->QAction::setEnabled(true);
+		ui->action_LightTheme->setChecked(false);
+		ui->action_DarkTheme->QAction::setEnabled(false);
+		ui->action_DarkTheme->setChecked(true);
+		qApp->setStyleSheet("QMenuBar {background-color: #232323; color:white}"
+							"QMenuBar::item:selected {background: #27609A}"
+							"QMenu {background-color: #232323; color:white}"
+							"QMenu::item:selected {background: #27609A}"
+							"QMainWindow {background-color: #232323}"
+							"QDialog {background-color: #333333}"
+							"QLabel {color:white}"
+							"QPlainTextEdit {background-color: #000000; color:white}"
+							"QLineEdit {background-color: #000000; color:white}"
+							"QPushButton {border: 1px solid #27609A; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #323232, stop: 1 #2c2c2c); color:white;min-height: 21px;padding-left: 25px;padding-right: 25px}"
+							"QPushButton:hover {border: 2px solid #27609A; background-color: #353535; padding-left: 24px; padding-right: 24px}");
+}

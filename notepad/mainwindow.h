@@ -31,6 +31,10 @@ private slots:
 	void on_action_English_triggered();
 	void on_action_changeShortcuts_triggered();
 
+	void on_action_LightTheme_triggered();
+
+	void on_action_DarkTheme_triggered();
+
 private:
 	QString defaultTitle = "Text editor";
 	Ui::MainWindow *ui;

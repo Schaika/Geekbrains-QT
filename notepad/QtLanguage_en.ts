@@ -29,86 +29,101 @@
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="82"/>
+        <location filename="mainwindow.ui" line="74"/>
+        <source>Тема</source>
+        <translation>Theme</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="90"/>
         <source>Новый файл</source>
         <translation>New File</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="85"/>
+        <location filename="mainwindow.ui" line="93"/>
         <source>Создать новый файл</source>
         <translation>Create a new file</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="88"/>
+        <location filename="mainwindow.ui" line="96"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="93"/>
+        <location filename="mainwindow.ui" line="101"/>
         <source>Открыть...</source>
         <translation>Open...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="96"/>
+        <location filename="mainwindow.ui" line="104"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="101"/>
+        <location filename="mainwindow.ui" line="109"/>
         <source>Справка</source>
         <translation>View help</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="104"/>
+        <location filename="mainwindow.ui" line="112"/>
         <source>Ctrl+H</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="109"/>
+        <location filename="mainwindow.ui" line="117"/>
         <source>Сохранить...</source>
         <translation>Save...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="112"/>
+        <location filename="mainwindow.ui" line="120"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="117"/>
+        <location filename="mainwindow.ui" line="125"/>
         <source>Сохранить как...</source>
         <translation>Save as...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="120"/>
+        <location filename="mainwindow.ui" line="128"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="125"/>
+        <location filename="mainwindow.ui" line="133"/>
         <source>Выход</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="133"/>
+        <location filename="mainwindow.ui" line="141"/>
         <source>Открыть только для чтения...</source>
         <translation>Open as read-only...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="160"/>
+        <location filename="mainwindow.ui" line="168"/>
         <source>Изменить сочетания клавиш</source>
         <translation>Change key shortcuts</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="182"/>
+        <source>Светлая</source>
+        <translation>Light</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="190"/>
+        <source>Темная</source>
+        <translation>Dark</translation>
+    </message>
+    <message>
         <location filename="mainwindow.cpp" line="13"/>
-        <location filename="mainwindow.cpp" line="94"/>
+        <location filename="mainwindow.cpp" line="98"/>
         <source>Новый файл - </source>
         <translation>New file - </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="23"/>
         <location filename="mainwindow.cpp" line="24"/>
-        <location filename="mainwindow.cpp" line="173"/>
-        <location filename="mainwindow.cpp" line="174"/>
+        <location filename="mainwindow.cpp" line="177"/>
+        <location filename="mainwindow.cpp" line="178"/>
         <source>Файл был изменен.</source>
         <translation>The document has been modified.</translation>
     </message>
@@ -124,59 +139,59 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="28"/>
-        <location filename="mainwindow.cpp" line="178"/>
+        <location filename="mainwindow.cpp" line="182"/>
         <source>Нет</source>
         <translation>No</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="29"/>
-        <location filename="mainwindow.cpp" line="179"/>
+        <location filename="mainwindow.cpp" line="183"/>
         <source>Отмена</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="41"/>
+        <location filename="mainwindow.cpp" line="45"/>
         <source>Открыть файл...</source>
         <translation>Open file...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="49"/>
+        <location filename="mainwindow.cpp" line="53"/>
         <source>  -- открыто только для чтения -- </source>
         <translation>  -- opened as read-only -- </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="52"/>
+        <location filename="mainwindow.cpp" line="56"/>
         <source>  -- файл только для чтения -- </source>
         <translation>  -- file is read-only -- </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="68"/>
+        <location filename="mainwindow.cpp" line="72"/>
         <source>Сохранить файл как...</source>
         <translation>Save file as...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="68"/>
+        <location filename="mainwindow.cpp" line="72"/>
         <source>/Новый файл</source>
         <translation>/New file</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="175"/>
+        <location filename="mainwindow.cpp" line="179"/>
         <source>Вы хотите сохранить текущие изменения перед загрузкой справки?</source>
         <translation>Do you want to save your changes before loading help file?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="177"/>
+        <location filename="mainwindow.cpp" line="181"/>
         <source>Да</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="196"/>
+        <location filename="mainwindow.cpp" line="200"/>
         <source>Справка - </source>
         <translation>Help - </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="41"/>
-        <location filename="mainwindow.cpp" line="68"/>
+        <location filename="mainwindow.cpp" line="45"/>
+        <location filename="mainwindow.cpp" line="72"/>
         <source>Текстовый файл(*.txt);;Все файлы(*.*)</source>
         <translation>Text documents(*.txt);;All files(*.*)</translation>
     </message>
