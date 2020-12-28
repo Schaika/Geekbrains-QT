@@ -15,6 +15,7 @@ dialogChangeShotcuts::dialogChangeShotcuts(QWidget *parent,QStringList list) :
 		ui->keySequenceEdit_saveAs->setKeySequence(list.at(4));
 		ui->keySequenceEdit_help->setKeySequence(list.at(5));
 		ui->keySequenceEdit_exit->setKeySequence(list.at(6));
+		ui->keySequenceEdit_print->setKeySequence(list.at(7));
 	}
 
 dialogChangeShotcuts::~dialogChangeShotcuts()
@@ -39,6 +40,7 @@ void dialogChangeShotcuts::on_pushButton_accept_released()
 	newList.append(ui->keySequenceEdit_saveAs->keySequence().toString());
 	newList.append(ui->keySequenceEdit_help->keySequence().toString());
 	newList.append(ui->keySequenceEdit_exit->keySequence().toString());
+	newList.append(ui->keySequenceEdit_print->keySequence().toString());
 	emit sendList(newList);
 	this->close();
 }

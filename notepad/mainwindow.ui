@@ -50,6 +50,8 @@
     <addaction name="action_Save"/>
     <addaction name="action_SaveAs"/>
     <addaction name="separator"/>
+    <addaction name="action_Print"/>
+    <addaction name="separator"/>
     <addaction name="action_quit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
@@ -188,6 +190,14 @@
    </property>
    <property name="text">
     <string>Темная</string>
+   </property>
+  </action>
+  <action name="action_Print">
+   <property name="text">
+    <string>Печать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>

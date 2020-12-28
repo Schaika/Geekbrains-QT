@@ -115,6 +115,16 @@
        </property>
       </widget>
      </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Печать</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QKeySequenceEdit" name="keySequenceEdit_print"/>
+     </item>
     </layout>
    </item>
   </layout>
