@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTextCharFormat>
 #include <QTranslator>
 #include "filestatus.h"
 QT_BEGIN_NAMESPACE
@@ -21,7 +22,7 @@ private slots:
 	void receiveShortcutsList(QStringList);
 	void on_action_Help_triggered();
 	void on_action_quit_triggered();
-	void on_plainTextEdit_textChanged();
+	void on_textEdit_textChanged();
 	void on_action_NewFile_triggered();
 	void on_action_Open_triggered();
 	void on_action_Save_triggered();
@@ -37,13 +38,25 @@ private slots:
 
 	void on_action_Print_triggered();
 
+	void on_action_Font_triggered();
+
+	void on_action_CopyFormat_triggered();
+
+	void on_action_ApplyFormat_triggered();
+
+	void on_action_AlignCenter_triggered();
+
+	void on_action_AlignLeft_triggered();
+
+	void on_action_AlignRight_triggered();
+
 private:
 	QString defaultTitle = "Text editor";
 	Ui::MainWindow *ui;
 	QTranslator translator;
 	QString lang = "ru";
 	filestatus filestatus; // Класс filestatus следит за состоянием текущего файла, создается один раз
-
+	QTextCharFormat formatBuffer;
 	QStringList shortcuts;
 	void initShortcutList();
 	QStringList getShortcutsList();

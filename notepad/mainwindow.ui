@@ -24,7 +24,7 @@
     <item row="0" column="0">
      <layout class="QFormLayout" name="formLayout_2">
       <item row="0" column="0" colspan="2">
-       <widget class="QPlainTextEdit" name="plainTextEdit"/>
+       <widget class="QTextEdit" name="textEdit"/>
       </item>
      </layout>
     </item>
@@ -81,7 +81,25 @@
     <addaction name="action_changeShortcuts"/>
     <addaction name="menu_5"/>
    </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>Правка</string>
+    </property>
+    <widget class="QMenu" name="menu_7">
+     <property name="title">
+      <string>Выравнивание...</string>
+     </property>
+     <addaction name="action_AlignLeft"/>
+     <addaction name="action_AlignCenter"/>
+     <addaction name="action_AlignRight"/>
+    </widget>
+    <addaction name="action_CopyFormat"/>
+    <addaction name="action_ApplyFormat"/>
+    <addaction name="action_Font"/>
+    <addaction name="menu_7"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menu_6"/>
    <addaction name="menu_3"/>
    <addaction name="menu_4"/>
    <addaction name="menu_2"/>
@@ -198,6 +216,41 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="action_CopyFormat">
+   <property name="text">
+    <string>Копировать формат</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Применить формат</string>
+   </property>
+  </action>
+  <action name="action_ApplyFormat">
+   <property name="text">
+    <string>Применить формат</string>
+   </property>
+  </action>
+  <action name="action_Font">
+   <property name="text">
+    <string>Шрифт...</string>
+   </property>
+  </action>
+  <action name="action_AlignLeft">
+   <property name="text">
+    <string>По левому краю</string>
+   </property>
+  </action>
+  <action name="action_AlignCenter">
+   <property name="text">
+    <string>По центру</string>
+   </property>
+  </action>
+  <action name="action_AlignRight">
+   <property name="text">
+    <string>По правому краю</string>
    </property>
   </action>
  </widget>

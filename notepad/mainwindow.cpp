@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include <QPrinter>
 #include <QPrintDialog>
+#include <QCloseEvent>
+#include <QFontDialog>
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
@@ -37,7 +39,7 @@ int MainWindow::askUser(){
 void MainWindow::actualizeForm()
 	{
 		ui->action_Save->QAction::setEnabled(!(!filestatus.hasPath() || filestatus.isReadOnly() || filestatus.isForceReadOnly())); // убирает кнопку сохранения, если файл только для чтения или нет пути к файлу в filestatus.full_path
-		ui->plainTextEdit->setReadOnly(filestatus.isForceReadOnly()); // блокирует изменения в главном поле ввода, если файл принудительно открыт только для чтения
+		ui->textEdit->setReadOnly(filestatus.isForceReadOnly()); // блокирует изменения в главном поле ввода, если файл принудительно открыт только для чтения
 	}
 
 void MainWindow::closeEvent(QCloseEvent* event)
@@ -89,7 +91,7 @@ void MainWindow::openDialog(){
 
 					if(file.open(QIODevice::ExistingOnly | QIODevice::ReadOnly)){
 						QByteArray bytedata = file.readAll();
-						ui->plainTextEdit->setPlainText(bytedata.data());
+						ui->textEdit->setPlainText(bytedata.data());
 						filestatus.setChanged(false);
 					}
 			}
@@ -111,20 +113,20 @@ bool MainWindow::saveFile(){
 		if(filestatus.getPath().length()==0|| filestatus.isReadOnly() == true) if(!saveAsDialog()) return false;
 		QFile file(filestatus.getPath());
 			if(file.open(QIODevice::WriteOnly)){
-				QString data = ui->plainTextEdit->toPlainText();
+				QString data = ui->textEdit->toPlainText();
 				QByteArray bytedata = data.toUtf8();
 				file.write(bytedata,bytedata.size());
 				return true;
 			}else return false;
 	}
-void MainWindow::on_plainTextEdit_textChanged()
+void MainWindow::on_textEdit_textChanged()
 {
 	filestatus.setChanged(true);
 }
 void MainWindow::newFile(){
 		filestatus.reset();
 		this->setWindowTitle(QString(tr("Новый файл - ")) + defaultTitle);
-		ui->plainTextEdit->clear();
+		ui->textEdit->clear();
 		filestatus.setChanged(false);
 		actualizeForm();
 	}
@@ -233,7 +235,7 @@ void MainWindow::on_action_Help_triggered()
 		QFile file(filestatus.getPath());
 			if(file.open(QIODevice::ReadOnly)){
 				QByteArray ba = file.readAll();
-				ui->plainTextEdit->setPlainText(ba.data());
+				ui->textEdit->setPlainText(ba.data());
 				filestatus.setChanged(false);
 				filestatus.setPath("");
 			}
@@ -332,7 +334,7 @@ void MainWindow::on_action_DarkTheme_triggered()
 							"QMainWindow {background-color: #232323}"
 							"QDialog {background-color: #333333}"
 							"QLabel {color:white}"
-							"QPlainTextEdit {background-color: #000000; color:white}"
+							"QtextEdit {background-color: #000000; color:white}"
 							"QLineEdit {background-color: #000000; color:white}"
 							"QPushButton {border: 1px solid #27609A; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #323232, stop: 1 #2c2c2c); color:white;min-height: 21px;padding-left: 25px;padding-right: 25px}"
 							"QPushButton:hover {border: 2px solid #27609A; background-color: #353535; padding-left: 24px; padding-right: 24px}");
@@ -344,6 +346,57 @@ void MainWindow::on_action_Print_triggered()
 		QPrintDialog dlg(&printer, this);
 		dlg.setWindowTitle(tr("Печать..."));
 		if (dlg.exec() == QDialog::Accepted){
-			ui->plainTextEdit->print(&printer);
+			ui->textEdit->print(&printer);
 		}
+}
+
+void MainWindow::on_action_Font_triggered()
+{
+		QFont font = ui->textEdit->textCursor().charFormat().font(); // получаем текущий шрифт
+		QFontDialog fntDlg(font,this);
+
+		bool ok;
+		font = fntDlg.getFont(&ok);
+		if (ok){
+			QTextCharFormat fmt;
+			fmt.setFont(font);
+			ui->textEdit->textCursor().setCharFormat(fmt);
+		}
+}
+
+void MainWindow::on_action_CopyFormat_triggered()
+{
+	formatBuffer = ui->textEdit->textCursor().charFormat();
+}
+
+void MainWindow::on_action_ApplyFormat_triggered()
+{
+	ui->textEdit->textCursor().setCharFormat(formatBuffer);
+}
+
+void MainWindow::on_action_AlignCenter_triggered()
+{
+		QTextCursor cursor = ui->textEdit->textCursor();
+		QTextBlockFormat textBlockFormat = cursor.blockFormat();
+		textBlockFormat.setAlignment(Qt::AlignCenter);
+		cursor.mergeBlockFormat(textBlockFormat);
+		ui->textEdit->setTextCursor(cursor);
+}
+
+void MainWindow::on_action_AlignLeft_triggered()
+{
+		QTextCursor cursor = ui->textEdit->textCursor();
+		QTextBlockFormat textBlockFormat = cursor.blockFormat();
+		textBlockFormat.setAlignment(Qt::AlignLeft);
+		cursor.mergeBlockFormat(textBlockFormat);
+		ui->textEdit->setTextCursor(cursor);
+}
+
+void MainWindow::on_action_AlignRight_triggered()
+{
+		QTextCursor cursor = ui->textEdit->textCursor();
+		QTextBlockFormat textBlockFormat = cursor.blockFormat();
+		textBlockFormat.setAlignment(Qt::AlignRight);
+		cursor.mergeBlockFormat(textBlockFormat);
+		ui->textEdit->setTextCursor(cursor);
 }
