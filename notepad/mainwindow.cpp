@@ -5,6 +5,8 @@
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPrinter>
+#include <QPrintDialog>
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
@@ -36,6 +38,36 @@ void MainWindow::actualizeForm()
 	{
 		ui->action_Save->QAction::setEnabled(!(!filestatus.hasPath() || filestatus.isReadOnly() || filestatus.isForceReadOnly())); // убирает кнопку сохранения, если файл только для чтения или нет пути к файлу в filestatus.full_path
 		ui->plainTextEdit->setReadOnly(filestatus.isForceReadOnly()); // блокирует изменения в главном поле ввода, если файл принудительно открыт только для чтения
+	}
+
+void MainWindow::closeEvent(QCloseEvent* event)
+	{
+		if(filestatus.hasChanges()){
+				QMessageBox msgBox;
+					msgBox.setWindowTitle(tr("Файл был изменен."));
+					msgBox.setText(tr("Файл был изменен."));
+					msgBox.setInformativeText(tr("Вы хотите сохранить текущие изменения перед закрытием программы?"));
+					msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+					msgBox.setButtonText(QMessageBox::Yes, tr("Да"));
+					msgBox.setButtonText(QMessageBox::No, tr("Нет"));
+					msgBox.setButtonText(QMessageBox::Cancel, tr("Отмена"));
+					msgBox.setDefaultButton(QMessageBox::Save);
+					msgBox.setIcon(QMessageBox::Question);
+				int ret = msgBox.exec();
+				switch (ret) {
+					case QMessageBox::Yes:
+							if(!saveFile()) event->ignore(); else event->accept();
+						break;
+					case QMessageBox::No:
+							event->accept();
+						break;
+					case QMessageBox::Cancel:
+							event->ignore();
+						break;
+					default:
+						break;
+				}
+		}
 	}
 void MainWindow::openDialog(){
 		QString filename = QFileDialog::getOpenFileName(this, tr("Открыть файл..."), filestatus.hasPath() ? filestatus.getPath() : QDir::current().path(), tr("Текстовый файл(*.txt);;Все файлы(*.*)")); //если путь к файлу есть - открывает диалоговое окно в папке с текущим файлом, если нет - открывает окно в папке с программой
@@ -163,7 +195,7 @@ void MainWindow::on_action_SaveAs_triggered()
 
 void MainWindow::on_action_quit_triggered()
 {
-	exit(0); // пока не нашел функцию, которая позволяет перехватить (и даже отменить) закрытие программы, если нажат крестик или Alt+F4. Потому не стал добавлять проверку и предлагать сохранить файл на этой кнопке, иначе было бы странно.
+	 qApp->closeAllWindows();
 }
 void MainWindow::on_action_Help_triggered()
 {
@@ -256,6 +288,7 @@ void MainWindow::initShortcutList()
 		shortcuts.append(ui->action_SaveAs->shortcut().toString());
 		shortcuts.append(ui->action_Help->shortcut().toString());
 		shortcuts.append(ui->action_quit->shortcut().toString());
+		shortcuts.append(ui->action_Print->shortcut().toString());
 	}
 
 QStringList MainWindow::getShortcutsList()
@@ -273,5 +306,44 @@ void MainWindow::receiveShortcutsList(QStringList newList)
 		ui->action_SaveAs->setShortcut(newList.at(4));
 		ui->action_Help->setShortcut(newList.at(5));
 		ui->action_quit->setShortcut(newList.at(6));
+		ui->action_Print->setShortcut(newList.at(7));
 		initShortcutList();
 	}
+
+void MainWindow::on_action_LightTheme_triggered()
+{
+		ui->action_LightTheme->QAction::setEnabled(false);
+		ui->action_LightTheme->setChecked(true);
+		ui->action_DarkTheme->QAction::setEnabled(true);
+		ui->action_DarkTheme->setChecked(false);
+		qApp->setStyleSheet("");
+}
+
+void MainWindow::on_action_DarkTheme_triggered()
+{
+		ui->action_LightTheme->QAction::setEnabled(true);
+		ui->action_LightTheme->setChecked(false);
+		ui->action_DarkTheme->QAction::setEnabled(false);
+		ui->action_DarkTheme->setChecked(true);
+		qApp->setStyleSheet("QMenuBar {background-color: #232323; color:white}"
+							"QMenuBar::item:selected {background: #27609A}"
+							"QMenu {background-color: #232323; color:white}"
+							"QMenu::item:selected {background: #27609A}"
+							"QMainWindow {background-color: #232323}"
+							"QDialog {background-color: #333333}"
+							"QLabel {color:white}"
+							"QPlainTextEdit {background-color: #000000; color:white}"
+							"QLineEdit {background-color: #000000; color:white}"
+							"QPushButton {border: 1px solid #27609A; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #323232, stop: 1 #2c2c2c); color:white;min-height: 21px;padding-left: 25px;padding-right: 25px}"
+							"QPushButton:hover {border: 2px solid #27609A; background-color: #353535; padding-left: 24px; padding-right: 24px}");
+}
+
+void MainWindow::on_action_Print_triggered()
+{
+		QPrinter printer;
+		QPrintDialog dlg(&printer, this);
+		dlg.setWindowTitle(tr("Печать..."));
+		if (dlg.exec() == QDialog::Accepted){
+			ui->plainTextEdit->print(&printer);
+		}
+}

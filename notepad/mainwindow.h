@@ -31,6 +31,12 @@ private slots:
 	void on_action_English_triggered();
 	void on_action_changeShortcuts_triggered();
 
+	void on_action_LightTheme_triggered();
+
+	void on_action_DarkTheme_triggered();
+
+	void on_action_Print_triggered();
+
 private:
 	QString defaultTitle = "Text editor";
 	Ui::MainWindow *ui;
@@ -49,5 +55,7 @@ private:
 	int askUser();
 	void openFileCheck();
 	void actualizeForm();
+protected:
+	void closeEvent(QCloseEvent* event) override;
 };
 #endif // MAINWINDOW_H
