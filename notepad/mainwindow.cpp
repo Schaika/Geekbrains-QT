@@ -9,6 +9,7 @@
 #include <QPrintDialog>
 #include <QCloseEvent>
 #include <QFontDialog>
+#include <QDateTime>
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
@@ -69,6 +70,16 @@ void MainWindow::closeEvent(QCloseEvent* event)
 					default:
 						break;
 				}
+		}
+	}
+
+void MainWindow::keyPressEvent(QKeyEvent* event)
+	{
+		if(event->key() == Qt::Key_F5){
+			QTextCursor cursor = ui->textEdit->textCursor();
+			QDateTime now = QDateTime::currentDateTime();
+			cursor.insertText(QString(now.time().toString()) + " " + now.date().toString());
+			ui->textEdit->setTextCursor(cursor);
 		}
 	}
 void MainWindow::openDialog(){
