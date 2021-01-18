@@ -22,7 +22,7 @@ MyFileSystemBrowser::MyFileSystemBrowser(QWidget* parent, QStandardItemModel* mo
 		searchLine = new QLineEdit(this);
 		connect(searchLine, SIGNAL(returnPressed()), this, SLOT(doSearch()));
 		searchLine->setPlaceholderText(tr("Поиск..."));
-		gridLayout->addWidget(searchLine,31,1,1,30);
+		gridLayout->addWidget(searchLine,31,1,1,29);
 
 		stop_reset = new QPushButton(this);
 		stop_reset->setText("Stop");
@@ -211,7 +211,7 @@ void MyFileSystemBrowser::doSearch()
 		delete model;
 		QStandardItemModel *model = new QStandardItemModel(this);
 		searchResults.clear();
-		searchResults.append(new QStandardItem(QIcon(QApplication::style()->standardIcon(QStyle::SP_DriveHDIcon)), currentPath));
+		searchResults.append(new QStandardItem(QIcon(QApplication::style()->standardIcon(QStyle::SP_DriveHDIcon)), "Search results (" + currentPath + ")"));
 		model->appendRow(searchResults);
 		setModel(model);
 		showingResults = true;
