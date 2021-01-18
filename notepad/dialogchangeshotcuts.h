@@ -22,7 +22,6 @@ private slots:
 signals:
 	void sendList(QStringList);
 private:
-
 	Ui::dialogChangeShotcuts *ui;
 	QStringList *list;
 };
