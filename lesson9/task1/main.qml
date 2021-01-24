@@ -65,7 +65,7 @@ height: mainWindow.height/10}',
     Text {
         id: _task
         text: qsTr("Задача")
-        width: root.width-95-95-75-5*5
+        width: root.width-95-95-mainWindow.height/10-15
         horizontalAlignment: "AlignHCenter"
     }
     Text {

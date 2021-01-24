@@ -41,12 +41,13 @@ Item {
             root.changed()
         }
     }
-    Button{
+    RemoveTaskButton{
         id: _remove
         anchors.left: _progress.right
         anchors.leftMargin: _elementmargin
-        width: 75
-        text: qsTr("Удалить")
+        height: _progress.height
+        width: height
+        //text: qsTr("Удалить")
         onClicked: root.clicked_remove()
     }
     function check(){
