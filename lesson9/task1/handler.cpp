@@ -119,6 +119,8 @@ void handler::editTask(int ID, QString text, QString date, int progress)
 		taskList[ID].setTaskText(text);
 		parseDate(date);
 		taskList[ID].setDate(QDate(_currentYear,_currentMonth,_currentDay));
+		if (progress>10) progress=10;
+		if (progress<0) progress=0;
 		taskList[ID].setProgress(progress);
 		saveToFile();
 	}

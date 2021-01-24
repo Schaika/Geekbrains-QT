@@ -36,8 +36,10 @@ Item {
         width: 95
         horizontalAlignment: "AlignHCenter"
         validator: IntValidator{bottom: 0; top: 10;}
-        focus: true
-        onTextEdited: root.changed()
+        onTextEdited: {
+            check()
+            root.changed()
+        }
     }
     Button{
         id: _remove
@@ -47,4 +49,8 @@ Item {
         text: qsTr("Удалить")
         onClicked: root.clicked_remove()
     }
+    function check(){
+        if (_progress.text>10) _progress.text = 10;
+    }
 }
+
