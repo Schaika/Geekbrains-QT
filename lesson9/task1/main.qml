@@ -13,8 +13,8 @@ Window {
     }
 
     id: mainWindow
-    width: 640
-    height: 480
+    width: 800
+    height: 600
     visible: true
     title: qsTr("Органайзер")
 
@@ -29,7 +29,7 @@ curdate:"'+currentDate+'";
 progress:"'+currentProgress+'";
 curtask:"'+currentText+'";
 width: mainWindow.width;
-height: mainWindow.height/10}',
+height: 40}',
                                         list,
                                         "task_"+currentID);}
         onRemoveAll: removeall();
@@ -65,7 +65,7 @@ height: mainWindow.height/10}',
     Text {
         id: _task
         text: qsTr("Задача")
-        width: root.width-95-95-mainWindow.height/10-15
+        width: root.width-95-95-40-25
         horizontalAlignment: "AlignHCenter"
     }
     Text {
