@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/src/ico">
+        <file>res/text-editor-logo.svg</file>
+        <file>res/subWindow_notSaved.png</file>
+        <file>res/subWindow_Saved.png</file>
+        <file>res/subWindow-readOnly.png</file>
+    </qresource>
+    <qresource prefix="/src/txt">
+        <file>res/readme_ru_RU.txt</file>
+        <file>res/readme_en_US.txt</file>
+    </qresource>
+    <qresource prefix="/new/flags">
+        <file>res/flags/russia.png</file>
+        <file>res/flags/united-states-of-america.png</file>
+    </qresource>
+    <qresource prefix="/new/lang">
+        <file>notepad_multitab_ru_RU.qm</file>
+    </qresource>
+</RCC>
