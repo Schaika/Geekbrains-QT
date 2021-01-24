@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>SingleItem.qml</file>
+        <file>AddTaskButton.qml</file>
+        <file>RemoveTaskButton.qml</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>add.png</file>
+        <file>remove.png</file>
+    </qresource>
+</RCC>
