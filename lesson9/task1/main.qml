@@ -65,11 +65,12 @@ height: 40}',
     Text {
         id: _task
         text: qsTr("Задача")
-        width: root.width-95-95-40-25
+        width: root.width-95-95-40-30
         horizontalAlignment: "AlignHCenter"
     }
     Text {
         anchors.left: _task.right
+        anchors.leftMargin: 5
         id: _date
         text: qsTr("Дата окончания")
         width: 95
@@ -77,6 +78,7 @@ height: 40}',
     }
     Text {
         anchors.left: _date.right
+        anchors.leftMargin: 5
         id: _progress
         text: qsTr("Прогресс")
         width: 95
