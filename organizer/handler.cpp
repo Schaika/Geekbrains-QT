@@ -4,6 +4,16 @@ handler::handler(QObject *parent) : QObject(parent)
 	{
 	}
 
+void handler::validate()
+	{
+		_marktext = "";
+		if (_currentText.isEmpty()) _marktext+=tr("Текст задачи пуст!\n");
+		if (_currentDate.isEmpty()) _marktext+=tr("Дата введена неверно!\n");
+		_marktext.chop(1);
+		if(_marktext.isEmpty()) _marked=false; else _marked=true;
+
+	}
+
 void handler::loadFile()
 	{
 		QString path = qApp->applicationDirPath();
@@ -116,6 +126,7 @@ void handler::init()
 
 void handler::editTask(int ID, QString text, QString date, int progress)
 	{
+		_currentID = ID;
 		taskList[ID].setTaskText(text);
 		parseDate(date);
 		taskList[ID].setDate(QDate(_currentYear,_currentMonth,_currentDay));
@@ -123,6 +134,10 @@ void handler::editTask(int ID, QString text, QString date, int progress)
 		if (progress<0) progress=0;
 		taskList[ID].setProgress(progress);
 		saveToFile();
+		_currentDate = taskList[ID].getDate().toString("dd.MM.yyyy");
+		_currentText = taskList[ID].getTaskText();
+		validate();
+		emit revalidate();
 	}
 
 void handler::addTask()
@@ -149,13 +164,7 @@ void handler::rebuild(){
 			_currentID = obj.getID();
 			_currentText = obj.getTaskText();
 			_currentProgress = obj.getProgress();
-
-			_marktext = "";
-			if (_currentText.isEmpty()) _marktext+=tr("Текст задачи пуст!\n");
-			if (_currentDate.isEmpty()) _marktext+=tr("Дата введена неверно!\n");
-			_marktext.chop(1);
-			if(_marktext.isEmpty()) _marked=false; else _marked=true;
-
+			validate();
 			emit appendTask();
 		}
 		emit updateCounter();

@@ -37,7 +37,6 @@ Item {
         anchors.leftMargin: _elementmargin
         width: 95
         horizontalAlignment: "AlignHCenter"
-        validator: IntValidator{bottom: 0; top: 10;}
         onTextEdited: {
             check()
             root.changed()
@@ -54,6 +53,7 @@ Item {
     }
     function check(){
         if (_progress.text>10) _progress.text = 10;
+        if (_progress.text<0) _progress.text = 0;
     }
     Warning{
     id: mark

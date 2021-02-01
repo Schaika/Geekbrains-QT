@@ -1,9 +1,9 @@
-
 import QtQuick.Window 2.12
+import myclass.Handler 1.0
 import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
-import myclass.Handler 1.0
+
 Window {
     property var first: true
     onAfterRendering: {
@@ -40,6 +40,17 @@ height: 40}',
         onUpdateCounter: {
             counter.count = taskcount
         }
+        onRevalidate:{
+            recheck();
+        }
+
+    }
+
+    function recheck(){
+         list.children[_handler.currentID].marked = _handler.ismarked;
+         list.children[_handler.currentID].mark_text = _handler.marktext;
+       //  console.log(_handler.currentID);
+       //  console.log(_handler.ismarked);
     }
 
     function removeall()
@@ -47,7 +58,7 @@ height: 40}',
     for (var i = 0; i < list.children.length; i++)
     {
         list.children[i].destroy()
-    //console.log("item "+i);
+        //console.log("item "+i);
     }
     }
     ScrollView {

@@ -11,17 +11,18 @@
 class handler : public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(int currentID READ currentID())
-	Q_PROPERTY(QString currentText READ currentText())
-	Q_PROPERTY(QString currentDate READ currentDate())
-	Q_PROPERTY(int currentProgress READ currentProgress())
-	Q_PROPERTY(bool ismarked READ mark())
-	Q_PROPERTY(int taskcount READ taskCount())
-	Q_PROPERTY(QString marktext READ marktext())
+	Q_PROPERTY(int currentID READ currentID());
+	Q_PROPERTY(QString currentText READ currentText());
+	Q_PROPERTY(QString currentDate READ currentDate());
+	Q_PROPERTY(int currentProgress READ currentProgress());
+	Q_PROPERTY(bool ismarked READ mark());
+	Q_PROPERTY(int taskcount READ taskCount());
+	Q_PROPERTY(QString marktext READ marktext());
 public:
 	explicit handler(QObject *parent = nullptr);
 private:
 	QList<taskcontainer> taskList = {};
+	void validate();
 	void loadFile();
 	void saveToFile();
 	bool process_line(QString,bool);
@@ -56,6 +57,7 @@ signals:
 	void appendTask();
 	void removeAll();
 	void updateCounter();
+	void revalidate();
 };
 
 #endif // HANDLER_H
