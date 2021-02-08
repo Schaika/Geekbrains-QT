@@ -47,3 +47,13 @@ void taskcontainer::setID(const quint32& value)
 	{
 		ID = value;
 	}
+
+quint32 taskcontainer::getLocalID() const
+	{
+		return localID;
+	}
+
+void taskcontainer::setLocalID(const quint32& value)
+	{
+		localID = value;
+	}

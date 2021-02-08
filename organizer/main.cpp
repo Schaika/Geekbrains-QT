@@ -1,4 +1,4 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include "handler.h"
 int main(int argc, char *argv[])
@@ -6,8 +6,7 @@ int main(int argc, char *argv[])
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 		QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
-
-		QGuiApplication app(argc, argv);
+		QApplication app(argc, argv);
 		qmlRegisterType<handler>("myclass.Handler", 1, 0, "Handler");
 		QQmlApplicationEngine engine;
 		const QUrl url(QStringLiteral("qrc:/main.qml"));

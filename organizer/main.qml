@@ -91,12 +91,13 @@ height: 40}',
         horizontalAlignment: Text.AlignHCenter
         font.pointSize: _addButton.height*0.25
     }
-    Refresh{
-        id: _refresh
+    Button{
+        id: _popup
         anchors.top: root.bottom
         anchors.right: root.right
+        text: qsTr("Открыть таблицу")
         onClicked: {
-            _handler.refresh();
+            _handler.openWindow();
         }
         anchors.rightMargin: 15
     }

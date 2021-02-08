@@ -18,11 +18,15 @@ public:
 	quint32 getID() const;
 	void setID(const quint32& value);
 
+	quint32 getLocalID() const;
+	void setLocalID(const quint32& value);
+
 private:
 	QDate date;
 	QString taskText;
 	quint16 progress;
 	quint32 ID;
+	quint32 localID;
 };
 
 #endif // TASKCONTAINER_H

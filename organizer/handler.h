@@ -8,6 +8,8 @@
 #include <QCoreApplication>
 #include <QTextStream>
 #include "taskcontainer.h"
+#include "sqlite.h"
+#include "popupwindow.h"
 class handler : public QObject
 {
 	Q_OBJECT
@@ -21,11 +23,8 @@ class handler : public QObject
 public:
 	explicit handler(QObject *parent = nullptr);
 private:
-	QList<taskcontainer> taskList = {};
+	SQLite* dbmanager;
 	void validate();
-	void loadFile();
-	void saveToFile();
-	bool process_line(QString,bool);
 	void rebuild();
 	int _currentID;
 	QString _currentText;
@@ -38,12 +37,13 @@ private:
 	QString _marktext;
 	int _currentTasks;
 	void parseDate(QString);
+	QWidget *wgt = nullptr;
 public:
 	Q_INVOKABLE void removeTask(int ID = 0);
 	Q_INVOKABLE void init();
 	Q_INVOKABLE void editTask(int ID = 0, QString text = "", QString date = "", int progress = 0);
 	Q_INVOKABLE void addTask();
-	Q_INVOKABLE void refresh();
+	Q_INVOKABLE void openWindow();
 	int taskCount() const;
 	int currentID() const;
 	QString currentText() const;

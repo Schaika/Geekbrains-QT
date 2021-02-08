@@ -1,4 +1,7 @@
-QT += quick
+QT += core gui quick sql
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 
 CONFIG += c++11
 
@@ -9,6 +12,8 @@ CONFIG += c++11
 SOURCES += \
         handler.cpp \
         main.cpp \
+        popupwindow.cpp \
+        sqlite.cpp \
         taskcontainer.cpp
 
 RESOURCES += qml.qrc
@@ -26,4 +31,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     handler.h \
+    popupwindow.h \
+    sqlite.h \
     taskcontainer.h
+
+FORMS += \
+    popupwindow.ui
