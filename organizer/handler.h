@@ -44,6 +44,7 @@ public:
 	Q_INVOKABLE void editTask(int ID = 0, QString text = "", QString date = "", int progress = 0);
 	Q_INVOKABLE void addTask();
 	Q_INVOKABLE void openWindow();
+	Q_INVOKABLE void closing();
 	int taskCount() const;
 	int currentID() const;
 	QString currentText() const;

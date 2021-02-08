@@ -49,7 +49,13 @@ void handler::openWindow()
 		wgt = new popupWindow(nullptr,dbmanager->getModel());
 		wgt->setWindowFlags(wgt->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 		connect(dbmanager,SIGNAL(updateModel(QSqlQueryModel*)),wgt,SLOT(updateModel(QSqlQueryModel*)));
+
 		wgt->show();
+	}
+
+void handler::closing()
+	{
+		wgt->close();
 	}
 
 void handler::rebuild(){

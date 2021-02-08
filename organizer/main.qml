@@ -4,7 +4,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
 
-Window {
+ApplicationWindow {
     property var first: true
     onAfterRendering: {
         if(first){
@@ -12,13 +12,14 @@ Window {
         first = false;
         }
     }
-
     id: mainWindow
     width: 800
     height: 600
     visible: true
     title: qsTr("Органайзер")
-
+    onClosing: {
+        _handler.closing();
+    }
     Handler{
 
         id: _handler
