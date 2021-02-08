@@ -55,7 +55,9 @@ void handler::openWindow()
 
 void handler::closing()
 	{
+		if(wgt != nullptr){
 		wgt->close();
+		}
 	}
 
 void handler::rebuild(){
