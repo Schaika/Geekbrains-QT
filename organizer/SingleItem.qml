@@ -19,7 +19,7 @@ Item {
         width: root.width - (_date.width + _progress.width + _remove.width) - _elementmargin*7
         placeholderText: qsTr("Введите текст")
         horizontalAlignment: "AlignHCenter"
-        onTextEdited: root.changed()
+        onEditingFinished: root.changed()
 
     }
     TextField{
@@ -29,7 +29,7 @@ Item {
         width: 95
         horizontalAlignment: "AlignHCenter"
         inputMask: "00.00.0000"
-        onTextEdited: root.changed()
+        onEditingFinished: root.changed()
     }
     TextField{
         id: _progress
@@ -37,7 +37,7 @@ Item {
         anchors.leftMargin: _elementmargin
         width: 95
         horizontalAlignment: "AlignHCenter"
-        onTextEdited: {
+        onEditingFinished: {
             check()
             root.changed()
         }

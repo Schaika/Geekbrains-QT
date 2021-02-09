@@ -6,7 +6,6 @@ popupWindow::popupWindow(QWidget *parent, QSqlQueryModel* model) :
 	ui(new Ui::popupWindow)
 	{
 		ui->setupUi(this);
-		model->setParent(this);
 		ui->tableView->setModel(model);
 	}
 
